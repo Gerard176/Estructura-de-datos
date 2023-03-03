@@ -15,6 +15,8 @@ public class NewJFrame extends javax.swing.JFrame {
     public String array[];
     public int i = 0;
     public double suma = 0;
+    public int contador = 0;
+    public int indice = 0;
     
     public NewJFrame() {
         initComponents();
@@ -109,10 +111,20 @@ public class NewJFrame extends javax.swing.JFrame {
         jButton6.setBackground(new java.awt.Color(0, 0, 0));
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Valores repetidos");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setBackground(new java.awt.Color(0, 0, 0));
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Numero mas alto");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -228,13 +240,37 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         for (int j = 0; j < this.array.length; j++) {
-            this.suma = Double.parseDouble(this.array[j]);
+            this.suma += Double.parseDouble(this.array[j]);
             
         }
-        this.
+        this.jTextField1.setText("");
         this.jLabel1.setText("Mostrando suma");
         this.jTextField1.setText(Double.toString(suma));
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        double mayor = 0;
+        for (int j = 0; j < this.array.length; j++) {
+            if (mayor<Double.parseDouble(array[j])) {
+                mayor = Double.parseDouble(array[j]);
+            }
+            this.jTextField1.setText("");
+            this.jLabel1.setText("El numero mayor es");
+            this.jTextField1.setText(Double.toString(mayor));
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        for (int k = 1; k < this.array.length-1; k++) {
+            if(this.array[indice]==this.array[k]){
+                this.contador++;
+                System.out.println(contador);
+            }
+        }
+        System.out.println("El numero" +" "+this.array[indice]+" se repite "+this.contador+" veces");
+        this.indice++;
+
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
