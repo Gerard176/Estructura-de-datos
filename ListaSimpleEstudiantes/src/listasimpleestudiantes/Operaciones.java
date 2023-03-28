@@ -60,18 +60,18 @@ public class Operaciones {
         JOptionPane.showMessageDialog(null, "La cantidad de estudiantes aprobados es: "+aprob +"\n"
                 + "La cantidad de estudiantes desaprobados es: "+desap);
     }
-    public void verificarCodigos(){
-          Valores temporal=cab;
-          String cod = "";
-          while(temporal!=null){
-              cod = temporal.getCodigo();
-              
-              temporal=temporal.getSgt();
-              if (cod) {
-                  
-              }
-          }
-    }
+//    public void verificarCodigos(){
+//          Valores temporal=cab;
+//          String cod = "";
+//          while(temporal!=null){
+//              cod = temporal.getCodigo();
+//              
+//              temporal=temporal.getSgt();
+//              if (cod) {
+//                  
+//              }
+//          }
+//    }
     public void eliminarPrimerNodo() {
     if (cab != null) {
         Valores nodoEliminado = cab;
