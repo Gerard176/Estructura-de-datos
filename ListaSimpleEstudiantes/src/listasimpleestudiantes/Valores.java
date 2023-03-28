@@ -1,10 +1,12 @@
+package listasimpleestudiantes;
+
 public class Valores {
-     private String valor;
+     private String nombre;
      private Valores sgt;
      private Valores ant;
-     private String documento;
+     private String codigo;
      private String edad;
-     private int turno;
+     private float nota;
 
     public Valores getSgt() {
         return sgt;
@@ -22,20 +24,20 @@ public class Valores {
         this.ant = ant;
     }
 
-    public int getTurno() {
-        return turno;
+    public float getNota() {
+        return nota;
     }
 
-    public void setTurno(int turno) {
-        this.turno = turno;
+    public void setNota(float nota) {
+        this.nota = nota;
     }
 
-    public String getDocumento() {
-        return documento;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setDocumento(String documento) {
-        this.documento = documento;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getEdad() {
@@ -48,17 +50,17 @@ public class Valores {
      
      
     /**
-     * @return the valor
+     * @return the nombre
      */
-    public String getValor() {
-        return valor;
+    public String getNombre() {
+        return nombre;
     }
 
     /**
-     * @param valor the valor to set
+     * @param nombre the nombre to set
      */
-    public void setValor(String valor) {
-        this.valor = valor;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     
   

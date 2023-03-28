@@ -1,3 +1,5 @@
+package listasimpleestudiantes;
+
 
 import javax.swing.JOptionPane;
 
@@ -5,19 +7,20 @@ import javax.swing.JOptionPane;
 public class Operaciones {
     
     Valores cab;
-    
+    Valores col;
     
     Operaciones(){
-    cab=null;
+    cab = null;
+    col = null;
     
     }
     
     public void insertarInicio(String valor,String documento,String edad,int turno){
         Valores nuevo= new Valores();
-        nuevo.setValor(valor);
-        nuevo.setDocumento(documento);
+        nuevo.setNombre(valor);
+        nuevo.setCodigo(documento);
         nuevo.setEdad(edad);
-        nuevo.setTurno(turno);
+        nuevo.setNota(turno);
         nuevo.setSgt(null);
         if(cab == null){
             cab=nuevo;
@@ -34,30 +37,45 @@ public class Operaciones {
         Valores temp = cab;
         
         while(temp!= null){
-            if (temp.getDocumento().equals(documento)) {
-                temp.setValor(JOptionPane.showInputDialog(null,"Escriba el nuevo nombre del cliente"));
-                temp.setDocumento(JOptionPane.showInputDialog(null,"Escriba el nuevo documento del cliente"));
-                temp.setEdad(JOptionPane.showInputDialog(null,"Escriba la nueva edad del cliente"));
-                
+            if (temp.getCodigo().equals(documento)) {
+                temp.setNombre(JOptionPane.showInputDialog(null,"Escriba el nuevo nombre del cliente"));
                 break;
                
             }
             temp=temp.getSgt();
         }
     }
-    public void acomodarTurnos(){
-          Valores temporal=cab;
-          int turno = 0;
+    public void aprobados(){
+        int aprob = 0;
+        int desap = 0;
+        Valores temporal=cab;
           while(temporal!=null){
-              turno++;
-              temporal.setTurno(turno);
+              if (temporal.getNota()>= 3.0 && temporal.getNota()<=5.0  ) {
+                  aprob++;
+              }else if(temporal.getNota()< 3.0){
+                  desap++;
+              }
               temporal=temporal.getSgt();
+          }
+        JOptionPane.showMessageDialog(null, "La cantidad de estudiantes aprobados es: "+aprob +"\n"
+                + "La cantidad de estudiantes desaprobados es: "+desap);
+    }
+    public void verificarCodigos(){
+          Valores temporal=cab;
+          String cod = "";
+          while(temporal!=null){
+              cod = temporal.getCodigo();
+              
+              temporal=temporal.getSgt();
+              if (cod) {
+                  
+              }
           }
     }
     public void eliminarPrimerNodo() {
     if (cab != null) {
         Valores nodoEliminado = cab;
-        JOptionPane.showMessageDialog(null,"Siguiente: turno "+nodoEliminado.getTurno());
+        JOptionPane.showMessageDialog(null,"Siguiente: turno "+nodoEliminado.getNota());
         cab = cab.getSgt();
         nodoEliminado = null;
        
@@ -67,16 +85,20 @@ public class Operaciones {
     
     
     }
-    public void buscar(String documento){
+    public void buscar(String nombre){
         Valores temp = cab;
         while(temp!= null){
-            if (temp.getDocumento().equals(documento)) {
-                JOptionPane.showMessageDialog(null,"Datos del cliente \n"
-                        + "nombre: "+temp.getValor()+"\n"
-                      + "documento: "+temp.getDocumento()+"\n"
+            if (temp.getNombre().equals(nombre)) {
+                JOptionPane.showMessageDialog(null,"Datos del estudiante \n"
+                      + "nombre: "+temp.getNombre()+"\n"
+                      + "documento: "+temp.getCodigo()+"\n"
                       + "edad: "+temp.getEdad()+"\n"
-                      + "turno: "+temp.getTurno());
-                break;
+                      + "Nota: "+temp.getNota()+"\n"
+                      + "Antes del estudiante: "+temp.getSgt().getNombre());
+                
+            }else if(temp == null && !temp.getNombre().equals(nombre)){
+                           JOptionPane.showMessageDialog(null, "No se encontro el estudiante");
+ 
             }
             temp=temp.getSgt();
         }
@@ -96,18 +118,18 @@ public class Operaciones {
     public void primeryUltimo(){
       
        Valores temp = cab;
-               JOptionPane.showMessageDialog(null,"Primer cliente de la cola \n"
-                        + "nombre: "+temp.getValor()+"\n"
-                      + "documento: "+temp.getDocumento()+"\n"
+               JOptionPane.showMessageDialog(null,"Primer Estudiante de la cola \n"
+                       + "nombre: "+temp.getNombre()+"\n"
+                      + "documento: "+temp.getCodigo()+"\n"
                       + "edad: "+temp.getEdad()+"\n"
-                      + "turno: "+temp.getTurno());
+                      + "Nota: "+temp.getNota());
           while (temp!=null) {
               if (temp.getSgt()== null) {
-                 JOptionPane.showMessageDialog(null,"Ultimo cliente de la cola \n"
-                        + "nombre: "+temp.getValor()+"\n"
-                      + "documento: "+temp.getDocumento()+"\n"
+                 JOptionPane.showMessageDialog(null,"Ultimo Estudiante de la cola \n"
+                        + "nombre: "+temp.getNombre()+"\n"
+                      + "documento: "+temp.getCodigo()+"\n"
                       + "edad: "+temp.getEdad()+"\n"
-                      + "turno: "+temp.getTurno()); 
+                      + "Nota: "+temp.getNota()); 
               }
             temp = temp.getSgt();
         }
@@ -145,13 +167,13 @@ public class Operaciones {
 //    }
 
     
-    public void insertarFinal(String valor,String documento,String edad,int turno){
+    public void insertarFinal(String valor,String documento,String edad,float nota){
         Valores tem = cab;
         Valores nuevo = new Valores();
-        nuevo.setValor(valor);
-        nuevo.setDocumento(documento);
+        nuevo.setNombre(valor);
+        nuevo.setCodigo(documento);
         nuevo.setEdad(edad);
-        nuevo.setTurno(turno);
+        nuevo.setNota(nota);
         nuevo.setSgt(null);
         
         if (cab == null) {
@@ -174,12 +196,13 @@ public class Operaciones {
         }
           while(temporal!=null){
           
-              JOptionPane.showMessageDialog(null,"nombre: "+temporal.getValor()+"\n"
-                      + "documento: "+temporal.getDocumento()+"\n"
+              JOptionPane.showMessageDialog(null,"nombre: "+temporal.getNombre()+"\n"
+                      + "documento: "+temporal.getCodigo()+"\n"
                       + "edad: "+temporal.getEdad()+"\n"
-                      + "turno: "+temporal.getTurno());
+                      + "Nota: "+temporal.getNota()+"\n");
           
               temporal=temporal.getSgt();
+              
           }
           
     
